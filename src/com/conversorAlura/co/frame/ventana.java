@@ -15,6 +15,8 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
+import com.conversorAlura.co.libreria.Conversion; 
+import javax.swing.JOptionPane;
 
 public class ventana extends JFrame {
     public JPanel panel; 
@@ -22,6 +24,10 @@ public class ventana extends JFrame {
     JComboBox listaDivisa2;
     JPanel resultadoPanel;
     JLabel resultadoLabel;
+    JTextField valor;
+    JPanel resultadoPanel2;
+    JLabel resultadoLabel2;
+    String valorIngresado;
     
     public ventana() {  
               
@@ -89,12 +95,39 @@ public class ventana extends JFrame {
               
               listaDivisa1.setSelectedIndex(selectedDivisa2Index);
               listaDivisa2.setSelectedIndex(selectedDivisa1Index);
+              
+              String savedResultadoLabel2 = resultadoLabel2.getText();
+              
+              double validationLabel = Double.parseDouble(savedResultadoLabel2);
+              if (validationLabel != 0){
+                 String savedValorIngresado = valor.getText();
+                 
+                 resultadoLabel2.setText(savedValorIngresado);
+                 valor.setText(savedResultadoLabel2);
+              }
         }); //Evento de intercambio
                   
           botton2.addActionListener((ActionEvent e) -> {
+              String selectedDivisa1Index = (String) listaDivisa1.getSelectedItem();
+              String selectedDivisa2Index = (String) listaDivisa2.getSelectedItem();
+              
+
               // Realizar la conversión y asignar el resultado al JLabel de resultados
-              double resultado = realizarConversion(); // OJO - Implementa la lógica de conversión
-              resultadoLabel.setText("Resultado: " + resultado); // Actualizar el texto del JLabel
+              Conversion valoresFinales = new Conversion(); // OJO - Implementa la lógica de conversión
+              String valorExchange1 = valoresFinales.valorExchange (selectedDivisa1Index, selectedDivisa2Index);
+              resultadoLabel.setText(valorExchange1); // Actualizar el texto del JLabel
+            
+              try{
+              valorIngresado = valor.getText();
+              double valorIngresadoDouble = Double.parseDouble(valorIngresado);
+              double cambio =  Double.parseDouble(valorExchange1);
+              String resultado = valoresFinales.resultadoConversion(valorIngresadoDouble, cambio);
+              resultadoLabel2.setText(resultado);
+               } catch (NumberFormatException ex) {
+            // Mostrar un mensaje de error en caso de que el valor ingresado no sea numérico
+               JOptionPane.showMessageDialog(panel, "Ingresa un valor numérico válido.", "Error", JOptionPane.ERROR_MESSAGE);
+    }
+              
         });
                  
                        
@@ -103,8 +136,8 @@ public class ventana extends JFrame {
     }
     
     public void colocarCajaValor (){
-        JTextField valor = new JTextField ();
-        valor.setBounds(115, 300, 250, 25);
+        valor = new JTextField ();
+        valor.setBounds(115, 280, 250, 25);
         valor.setText("Ingresa el total a convertir...");
         valor.setHorizontalAlignment(SwingConstants.CENTER);
         valor.addFocusListener(new FocusListener() {
@@ -144,17 +177,32 @@ public class ventana extends JFrame {
         String resultado = ""; 
         resultadoPanel = new JPanel();
         resultadoLabel = new JLabel(resultado);
+        resultadoPanel2 = new JPanel();
+        resultadoLabel2 = new JLabel(resultado);
     
         
-        resultadoPanel.setBounds(138, 350, 200, 25);
+        resultadoPanel.setBounds(138, 320, 200, 30);
         resultadoPanel.setBorder(BorderFactory.createLineBorder(Color.BLACK)); // Borde azul para el JPanel
         resultadoPanel.setBackground(Color.WHITE);
         resultadoPanel.setLayout(new FlowLayout(FlowLayout.CENTER, 10, 10)); // Diseño centrado con espacio
-
+                
         panel.add(resultadoPanel);
         resultadoPanel.add(resultadoLabel);
         
+        String resultado1 = ""; 
+        resultadoPanel2 = new JPanel();
+        resultadoLabel2 = new JLabel(resultado);
+    
         
+        resultadoPanel2.setBounds(138, 360, 200, 30);
+        resultadoPanel2.setBorder(BorderFactory.createLineBorder(Color.BLACK)); // Borde azul para el JPanel
+        resultadoPanel2.setBackground(Color.WHITE);
+        resultadoPanel2.setLayout(new FlowLayout(FlowLayout.CENTER, 10, 10)); // Diseño centrado con espacio
+
+        panel.add(resultadoPanel2);
+        resultadoPanel2.add(resultadoLabel2);
+    
+        resultadoLabel.setVerticalAlignment(SwingConstants.CENTER);
+        resultadoLabel2.setVerticalAlignment(SwingConstants.CENTER);
     }
 }
-    
