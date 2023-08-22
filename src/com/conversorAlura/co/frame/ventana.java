@@ -115,7 +115,7 @@ public class ventana extends JFrame {
               // Realizar la conversión y asignar el resultado al JLabel de resultados
               Conversion valoresFinales = new Conversion(); // OJO - Implementa la lógica de conversión
               String valorExchange1 = valoresFinales.valorExchange (selectedDivisa1Index, selectedDivisa2Index);
-              resultadoLabel.setText(valorExchange1); // Actualizar el texto del JLabel
+              resultadoLabel.setText("Tasa de cambio: " + valorExchange1); // Actualizar el texto del JLabel
             
               try{
               valorIngresado = valor.getText();
