@@ -18,7 +18,7 @@ import javax.swing.SwingConstants;
 import com.conversorAlura.co.libreria.Conversion; 
 import javax.swing.JOptionPane;
 
-public class ventana extends JFrame {
+public class OOOOOOVentanaFrameInicial extends JFrame {
     public JPanel panel; 
     JComboBox listaDivisa1;
     JComboBox listaDivisa2;
@@ -29,7 +29,7 @@ public class ventana extends JFrame {
     JLabel resultadoLabel2;
     String valorIngresado;
     
-    public ventana() {  
+    public OOOOOOVentanaFrameInicial() {  
               
        this.setSize(500, 500); //Establecemos el tamaño de la ventana.
        this.setMinimumSize(new Dimension(200,200)); //Establecemos el tamaño minimo de la ventana para dispositivos en donde la resolución del windows sea menor por defecto.

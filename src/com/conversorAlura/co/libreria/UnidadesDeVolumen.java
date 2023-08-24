@@ -21,7 +21,7 @@ public class UnidadesDeVolumen {
     double[] gramos = {1, 0.001, 0.000001, 0.000000001, 0.00003527396, 0.00000220462, 0.00000000110231};
     double[] kilogramos = {1000, 1, 0.001, 0.000001, 0.03527396, 0.00220462, 0.00000110231};
     double[] libras = {453.592, 0.453592, 0.000453592, 0.000000453592, 0.015625, 0.00003125, 0.000000031081};
-    String[] unidades = {"mililitros", "centimetrosCubicos", "litros", "decimetrosCubicos", "metrosCubicos", "galones", "decametrosCubicos", "hectometrosCubicos", "kilometrosCubicos", "gramos", "kilogramos", "libras"};
+    String[] unidades = {"mL", "cm³", "L", "dm³", "m³", "gal", "dam³", "hm³", "km³", "g", "kg", "lb"};
 
     public double operar(String unidad1, String unidad2, double valorMedida) {
         int indexUnidad1 = -1; 

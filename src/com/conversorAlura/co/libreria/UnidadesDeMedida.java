@@ -9,12 +9,13 @@ public class UnidadesDeMedida {
     double[] kilometros = {1000000, 100000, 1000, 1, 39370.1, 1093.61, 0.621371};
     double[] yardas = {914.4, 91.44, 0.9144, 0.0009144, 36,1, 0.0005};
     double[] millas = {1609344, 160934.4, 1609.344, 1.609344, 63360, 1760, 1};
-    String[] medidas = {"milimetros", "centimetros", "metros", "kilometros", "pulgadas", "yardas", "millas"};
+    String[] medidas = {"mm", "cm", "m", "km", "in", "yd", "mi"};
 
-    public double operar (String medida1, String medida2, double valorMedida){
+    public double operar (String medida1, String medida2, String valorMedidaInicial){
         int indexMedida1 = -1; 
         int indexMedida2 = -1; 
         double valorSecundario;
+        double valorMedida = Double.parseDouble(valorMedidaInicial);
       for (var i = 0; i < medidas.length; i++) {
         if (medidas[i].equals(medida1)) {indexMedida1 = i;} 
         if (medidas[i].equals(medida2)) {indexMedida2 = i;}
