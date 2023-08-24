@@ -18,7 +18,9 @@ import javax.swing.JTextField;
  * @author carolina
  */
 public class ConversorMedidas extends javax.swing.JPanel {
-
+    String tempSolve1;
+    String tempSolve2;
+    boolean validation = false; 
     /**
      * Creates new form NewJPanel
      */
@@ -39,16 +41,13 @@ public class ConversorMedidas extends javax.swing.JPanel {
         tittle = new javax.swing.JLabel();
         img = new javax.swing.JLabel();
         text = new javax.swing.JLabel();
-        valor = new javax.swing.JTextField();
-        resultadoLabel1 = new javax.swing.JTextField();
-        listaDivisa1 = new javax.swing.JComboBox<>();
-        listaDivisa2 = new javax.swing.JComboBox<>();
+        textField1 = new javax.swing.JTextField();
+        textField2 = new javax.swing.JTextField();
+        boxMedidas1 = new javax.swing.JComboBox<>();
+        boxMedidas2 = new javax.swing.JComboBox<>();
         changeButton = new javax.swing.JButton();
-        jLabel4 = new javax.swing.JLabel();
-        jButton3 = new javax.swing.JButton();
+        conversores = new javax.swing.JButton();
         convertirButton = new javax.swing.JButton();
-        jPanel2 = new javax.swing.JPanel();
-        jLabel5 = new javax.swing.JLabel();
 
         setLayout(null);
 
@@ -69,31 +68,41 @@ public class ConversorMedidas extends javax.swing.JPanel {
         content.add(text);
         text.setBounds(160, 210, 280, 20);
 
-        valor.setMaximumSize(new java.awt.Dimension(64, 22));
-        valor.addActionListener(new java.awt.event.ActionListener() {
+        textField1.setMaximumSize(new java.awt.Dimension(64, 22));
+        textField1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                valorActionPerformed(evt);
+                textField1ActionPerformed(evt);
             }
         });
-        content.add(valor);
-        valor.setBounds(160, 250, 64, 22);
-
-        resultadoLabel1.setMaximumSize(new java.awt.Dimension(64, 22));
-        resultadoLabel1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                resultadoLabel1ActionPerformed(evt);
+        textField1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                textField1KeyTyped(evt);
             }
         });
-        content.add(resultadoLabel1);
-        resultadoLabel1.setBounds(370, 250, 64, 22);
+        content.add(textField1);
+        textField1.setBounds(160, 250, 64, 22);
 
-        listaDivisa1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "mm", "cm", "m", "km", "in", "yd", "mi" }));
-        content.add(listaDivisa1);
-        listaDivisa1.setBounds(70, 250, 81, 22);
+        textField2.setMaximumSize(new java.awt.Dimension(64, 22));
+        textField2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                textField2ActionPerformed(evt);
+            }
+        });
+        textField2.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                textField2KeyTyped(evt);
+            }
+        });
+        content.add(textField2);
+        textField2.setBounds(370, 250, 64, 22);
 
-        listaDivisa2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "mm", "cm", "m", "km", "in", "yd", "mi" }));
-        content.add(listaDivisa2);
-        listaDivisa2.setBounds(440, 250, 81, 22);
+        boxMedidas1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "mm", "cm", "m", "km", "in", "yd", "mi" }));
+        content.add(boxMedidas1);
+        boxMedidas1.setBounds(70, 250, 81, 22);
+
+        boxMedidas2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "mm", "cm", "m", "km", "in", "yd", "mi" }));
+        content.add(boxMedidas2);
+        boxMedidas2.setBounds(440, 250, 81, 22);
 
         changeButton.setText("jButton1");
         changeButton.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -109,24 +118,19 @@ public class ConversorMedidas extends javax.swing.JPanel {
         content.add(changeButton);
         changeButton.setBounds(230, 240, 131, 40);
 
-        jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel4.setText("Equivalencia:");
-        content.add(jLabel4);
-        jLabel4.setBounds(230, 340, 131, 16);
-
-        jButton3.setText("Conversores");
-        jButton3.addMouseListener(new java.awt.event.MouseAdapter() {
+        conversores.setText("Conversores");
+        conversores.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jButton3MouseClicked(evt);
+                conversoresMouseClicked(evt);
             }
         });
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        conversores.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                conversoresActionPerformed(evt);
             }
         });
-        content.add(jButton3);
-        jButton3.setBounds(10, 460, 110, 30);
+        content.add(conversores);
+        conversores.setBounds(10, 460, 110, 30);
 
         convertirButton.setText("Convertir");
         convertirButton.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -142,54 +146,28 @@ public class ConversorMedidas extends javax.swing.JPanel {
         content.add(convertirButton);
         convertirButton.setBounds(230, 300, 131, 23);
 
-        jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
-
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 168, Short.MAX_VALUE)
-            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel2Layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 28, Short.MAX_VALUE)
-            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel2Layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
-        );
-
-        content.add(jPanel2);
-        jPanel2.setBounds(210, 380, 168, 28);
-
         add(content);
         content.setBounds(0, 0, 600, 500);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void resultadoLabel1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_resultadoLabel1ActionPerformed
+    private void textField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textField2ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_resultadoLabel1ActionPerformed
+    }//GEN-LAST:event_textField2ActionPerformed
 
-    private void valorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_valorActionPerformed
+    private void textField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textField1ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_valorActionPerformed
+    }//GEN-LAST:event_textField1ActionPerformed
 
-    private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton3MouseClicked
+    private void conversoresMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_conversoresMouseClicked
         // TODO add your handling code here:
         realizarLlamadoPag Pag6 = new realizarLlamadoPag();
         BotonesIniciales conv6 = new BotonesIniciales();
         Pag6.Llamado(conv6, content);
-    }//GEN-LAST:event_jButton3MouseClicked
+    }//GEN-LAST:event_conversoresMouseClicked
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    private void conversoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_conversoresActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton3ActionPerformed
+    }//GEN-LAST:event_conversoresActionPerformed
 
     private void convertirButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_convertirButtonActionPerformed
         // TODO add your handling code here:
@@ -201,93 +179,111 @@ public class ConversorMedidas extends javax.swing.JPanel {
 
     private void convertirButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_convertirButtonMouseClicked
         // TODO add your handling code here:int selectedDivisa1Index = listaDivisa1.getSelectedIndex();
-             if (!resultadoLabel1.getText().equals("") || !valor.getText().equals("")){
-                if (!resultadoLabel1.getText().equals("") && !valor.getText().equals("")) {
+             if (!textField2.getText().equals("") || !textField1.getText().equals("")){
+                if (!textField2.getText().equals("") && !textField1.getText().equals("")) {
                 return;}
-                else if (!resultadoLabel1.getText().equals("")) {
-                    operando(resultadoLabel1);
+                else if (!textField2.getText().equals("")) {
+                    operando(textField2);
                 }
-                else if (!valor.getText().equals("")) {
-                    operando(valor);
+                else if (!textField1.getText().equals("")) {
+                    operando(textField1);
                 }
              
-             };
-              
-        
-              
-              /*try{
-              valorIngresado = valor.getText();
-              double valorIngresadoDouble = Double.parseDouble(valorIngresado);
-              double cambio =  Double.parseDouble(valorExchange1);
-              String resultado = valoresFinales.resultadoConversion(valorIngresadoDouble, cambio);
-              resultadoLabel2.setText(resultado);
-               } catch (NumberFormatException ex) {
-            // Mostrar un mensaje de error en caso de que el valor ingresado no sea numérico
-               JOptionPane.showMessageDialog(content, "Ingresa un valor numérico válido.", "Error", JOptionPane.ERROR_MESSAGE);
-              }*/
+             }
     }//GEN-LAST:event_convertirButtonMouseClicked
 
+    @SuppressWarnings("empty-statement")
     private void changeButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_changeButtonMouseClicked
         // TODO add your handling code here:
-              int selectedDivisa1Index = listaDivisa1.getSelectedIndex();
-              int selectedDivisa2Index = listaDivisa2.getSelectedIndex();
+             
+            try {
+               
+            if (textField1.getText().isEmpty() && textField2.getText().isEmpty() && validation){
+                textField2.setText(tempSolve2);
+                textField1.setText(tempSolve1);
+                tempSolve1 = textField2.getText();
+                tempSolve2 = textField1.getText();
+            } 
+             
+              int selectedDivisa1Index = boxMedidas1.getSelectedIndex();
+              int selectedDivisa2Index = boxMedidas2.getSelectedIndex();
               
-              listaDivisa1.setSelectedIndex(selectedDivisa2Index);
-              listaDivisa2.setSelectedIndex(selectedDivisa1Index);
+              boxMedidas1.setSelectedIndex(selectedDivisa2Index);
+              boxMedidas2.setSelectedIndex(selectedDivisa1Index);
               
-              String savedResultadoLabel1 = resultadoLabel1.getText();
-              String savedResultadoLabel2 = valor.getText();
-              double validationLabell = Double.parseDouble(savedResultadoLabel1);
+              String savedResultadoLabel1 = textField2.getText();
+              String savedResultadoLabel2 = textField1.getText();
               
-              if (validationLabell != 0){
-                resultadoLabel1.setText(savedResultadoLabel2);
-                valor.setText(savedResultadoLabel1);
-                
-                resultadoLabel1.revalidate();
-                resultadoLabel1.repaint();
-        
-                valor.revalidate();
-                valor.repaint();
+              if (!textField2.getText().isEmpty()){
+              
+                textField2.setText(savedResultadoLabel2);
+                textField1.setText(savedResultadoLabel1);
+
+                textField2.revalidate();
+                textField2.repaint();
+
+                textField1.revalidate();
+                textField1.repaint();
+              }
+             } catch (NumberFormatException ex) {
+            // Mostrar un mensaje de error en caso de que el valor ingresado no sea numérico
+               JOptionPane.showMessageDialog(content, "Ingresa un valor numérico válido.", "Error", JOptionPane.ERROR_MESSAGE);
               }
     }//GEN-LAST:event_changeButtonMouseClicked
 
+    private void textField1KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_textField1KeyTyped
+        // TODO add your handling code here:
+        textField2.setText("");
+    }//GEN-LAST:event_textField1KeyTyped
+
+    private void textField2KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_textField2KeyTyped
+        // TODO add your handling code here:
+        textField1.setText("");
+    }//GEN-LAST:event_textField2KeyTyped
+
 private void operando (JTextField valorBox) {
-              String selectedDivisa1Index = (String) listaDivisa1.getSelectedItem();
-              String selectedDivisa2Index = (String) listaDivisa2.getSelectedItem();
+              String selectedMedida1Index = (String) boxMedidas1.getSelectedItem();
+              String selectedMedida2Index = (String) boxMedidas2.getSelectedItem();
               
 
               // Realizar la conversión y asignar el resultado al JLabel de resultados
               
-              try{UnidadesDeMedida valoresFinales = new UnidadesDeMedida();
-              double valorExchange1 = valoresFinales.operar(selectedDivisa1Index, selectedDivisa2Index, valorBox.getText());
-              BigDecimal bd = new BigDecimal(valorExchange1);
-              bd = bd.setScale(3, RoundingMode.HALF_UP);
-              double numeroRedondeado = bd.doubleValue();
-              String valorExchangeString = Double.toString(numeroRedondeado);
-              if (valorBox == resultadoLabel1){
-              valor.setText(valorExchangeString);
-              }else if (valorBox == valor){resultadoLabel1.setText(valorExchangeString);}
+              try{
+              UnidadesDeMedida valoresFinales = new UnidadesDeMedida();
+              double valorOperacion1 = valoresFinales.operar(selectedMedida1Index, selectedMedida2Index, valorBox.getText());
+              double valorOperacion2 = valoresFinales.operar(selectedMedida1Index, selectedMedida2Index, "1");
+              BigDecimal bd1 = new BigDecimal(valorOperacion1);
+              BigDecimal bd2 = new BigDecimal(valorOperacion2);
+              bd1 = bd1.setScale(4, RoundingMode.HALF_UP);
+              bd2 = bd2.setScale(4, RoundingMode.HALF_UP);
+              double numeroRedondeado1 = bd1.doubleValue();
+              double numeroRedondeado2 = bd2.doubleValue();
+              String valorOperacion1String = Double.toString(numeroRedondeado1);
+              String valorOperacion2String = Double.toString(numeroRedondeado2);
+              if (valorBox == textField2){
               
-                } catch (NumberFormatException ex) {
+              textField1.setText(valorOperacion1String);
+              }else if (valorBox == textField1){textField2.setText(valorOperacion1String);}
+              tempSolve1 = textField1.getText();
+              tempSolve2 = textField2.getText();
+              validation = true;
+                 } catch (NumberFormatException ex) {
             // Mostrar un mensaje de error en caso de que el valor ingresado no sea numérico
                JOptionPane.showMessageDialog(content, "Ingresa un valor numérico válido.", "Error", JOptionPane.ERROR_MESSAGE);
               }
 };
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JComboBox<String> boxMedidas1;
+    private javax.swing.JComboBox<String> boxMedidas2;
     private javax.swing.JButton changeButton;
     private javax.swing.JPanel content;
+    private javax.swing.JButton conversores;
     private javax.swing.JButton convertirButton;
     private javax.swing.JLabel img;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JPanel jPanel2;
-    private javax.swing.JComboBox<String> listaDivisa1;
-    private javax.swing.JComboBox<String> listaDivisa2;
-    private javax.swing.JTextField resultadoLabel1;
     private javax.swing.JLabel text;
+    private javax.swing.JTextField textField1;
+    private javax.swing.JTextField textField2;
     private javax.swing.JLabel tittle;
-    private javax.swing.JTextField valor;
     // End of variables declaration//GEN-END:variables
 }

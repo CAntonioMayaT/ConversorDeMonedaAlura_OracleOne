@@ -17,7 +17,7 @@ import javax.swing.JOptionPane;
 public class ConversorMoneda extends javax.swing.JPanel {
   
     String valorIngresado;
-    
+    String tempSolve;
     public ConversorMoneda() {
         initComponents();
     }
@@ -207,6 +207,7 @@ public class ConversorMoneda extends javax.swing.JPanel {
 
     private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton3MouseClicked
         // TODO add your handling code here:
+            if (!valor.getText().isEmpty()) { 
               String selectedDivisa1Index = (String) listaDivisa1.getSelectedItem();
               String selectedDivisa2Index = (String) listaDivisa2.getSelectedItem();
               
@@ -222,17 +223,23 @@ public class ConversorMoneda extends javax.swing.JPanel {
               double cambio =  Double.parseDouble(valorExchange1);
               String resultado = valoresFinales.resultadoConversion(valorIngresadoDouble, cambio);
               resultadoLabel2.setText(resultado);
+              tempSolve = valor.getText();
+              
                } catch (NumberFormatException ex) {
             // Mostrar un mensaje de error en caso de que el valor ingresado no sea numérico
                JOptionPane.showMessageDialog(content, "Ingresa un valor numérico válido.", "Error", JOptionPane.ERROR_MESSAGE);
-    }
+    }}
               
        
     }//GEN-LAST:event_jButton3MouseClicked
 
     private void changeButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_changeButtonMouseClicked
         // TODO add your handling code here:
-              int selectedDivisa1Index = listaDivisa1.getSelectedIndex();
+            if (valor.getText().isEmpty()){valor.setText(tempSolve);
+            tempSolve = resultadoLabel2.getText();
+            } 
+            
+            try {int selectedDivisa1Index = listaDivisa1.getSelectedIndex();
               int selectedDivisa2Index = listaDivisa2.getSelectedIndex();
               
               listaDivisa1.setSelectedIndex(selectedDivisa2Index);
@@ -240,13 +247,20 @@ public class ConversorMoneda extends javax.swing.JPanel {
               
               String savedResultadoLabel2 = resultadoLabel2.getText();
               
-              double validationLabel = Double.parseDouble(savedResultadoLabel2);
-              if (validationLabel != 0){
-                 String savedValorIngresado = valor.getText();
-                 
-                 resultadoLabel2.setText(savedValorIngresado);
-                 valor.setText(savedResultadoLabel2);
+               if (!savedResultadoLabel2.isEmpty()) {
+               double validationLabel = Double.parseDouble(savedResultadoLabel2);
+
+               String savedValorIngresado = valor.getText();
+
+               resultadoLabel2.setText(savedValorIngresado);
+               valor.setText(savedResultadoLabel2);
+               }
+
+              } catch (NumberFormatException ex) {
+            // Mostrar un mensaje de error en caso de que el valor ingresado no sea numérico
+               JOptionPane.showMessageDialog(content, "Ingresa un valor numérico válido.", "Error", JOptionPane.ERROR_MESSAGE);
               }
+              
     }//GEN-LAST:event_changeButtonMouseClicked
 
 

@@ -7,7 +7,10 @@ import com.conversorAlura.co.libreria.ConsumidorAPI;
 public class Conversion {
     
     public String valorExchange (String divisaBase, String divisaSecundaria){
-        ConsumidorAPI api = new ConsumidorAPI();
+       if(divisaBase.equals(divisaSecundaria)) {return "1";} 
+       else{    
+       ConsumidorAPI api = new ConsumidorAPI();
+       
         String apiString = api.importAPI(divisaBase);
         String exchangeValue = "";
 
@@ -22,7 +25,7 @@ public class Conversion {
         }
     
     
-    return exchangeValue;
+    return exchangeValue;}
     }
  
     public String resultadoConversion (double valorIngresado, double valorCambio){

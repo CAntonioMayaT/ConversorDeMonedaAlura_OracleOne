@@ -23,10 +23,12 @@ public class UnidadesDeVolumen {
     double[] libras = {453.592, 0.453592, 0.000453592, 0.000000453592, 0.015625, 0.00003125, 0.000000031081};
     String[] unidades = {"mL", "cm³", "L", "dm³", "m³", "gal", "dam³", "hm³", "km³", "g", "kg", "lb"};
 
-    public double operar(String unidad1, String unidad2, double valorMedida) {
+    public double operar(String unidad1, String unidad2, String valorMedidaInicial) {
         int indexUnidad1 = -1; 
         int indexUnidad2 = -1; 
         double valorSecundario = 0;
+        double valorMedida = Double.parseDouble(valorMedidaInicial);
+
         
         for (int i = 0; i < unidades.length; i++) {
             if (unidades[i].equals(unidad1)) {

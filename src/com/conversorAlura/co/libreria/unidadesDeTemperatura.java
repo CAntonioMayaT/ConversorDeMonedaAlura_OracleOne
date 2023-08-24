@@ -4,10 +4,11 @@ public class UnidadesDeTemperatura {
    double valorFinal;
    String[] medidas = {"C", "K", "F"};
 
-    public double operar (String medida1, String medida2, double valorMedida){
+    public double operar (String medida1, String medida2, String valorMedidaInicial){
         int indexMedida1 = -1; 
         int indexMedida2 = -1; 
-     
+        double valorMedida = Double.parseDouble(valorMedidaInicial);
+
       for (var i = 0; i < medidas.length; i++) {
         if (medidas[i].equals(medida1)) {indexMedida1 = i;} 
         if (medidas[i].equals(medida2)) {indexMedida2 = i;}
