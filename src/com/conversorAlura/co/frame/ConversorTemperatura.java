@@ -3,8 +3,13 @@ package com.conversorAlura.co.frame;
 import com.conversorAlura.co.libreria.UnidadesDeMedida;
 import com.conversorAlura.co.libreria.UnidadesDeTemperatura;
 import com.conversorAlura.co.libreria.realizarLlamadoPag;
+import java.awt.Image;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
@@ -19,6 +24,8 @@ public class ConversorTemperatura extends javax.swing.JPanel {
      */
     public ConversorTemperatura() {
         initComponents();
+        setLabelImage(img, "/com/conversorAlura/co/img/temperatura.png");
+        setButtonImage(changedButton, "/com/conversorAlura/co/img/flechas.png");
     }
 
     /**
@@ -31,9 +38,9 @@ public class ConversorTemperatura extends javax.swing.JPanel {
     private void initComponents() {
 
         content = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
+        tittle = new javax.swing.JLabel();
+        img = new javax.swing.JLabel();
+        text = new javax.swing.JLabel();
         boxMedidas1 = new javax.swing.JComboBox<>();
         boxMedidas2 = new javax.swing.JComboBox<>();
         textField1 = new javax.swing.JTextField();
@@ -46,21 +53,21 @@ public class ConversorTemperatura extends javax.swing.JPanel {
 
         content.setLayout(null);
 
-        jLabel1.setFont(new java.awt.Font("Arial", 1, 17)); // NOI18N
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("CONVERSOR DE TEMPERATURA ALURA");
-        content.add(jLabel1);
-        jLabel1.setBounds(90, 50, 400, 21);
+        tittle.setFont(new java.awt.Font("Arial", 1, 17)); // NOI18N
+        tittle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        tittle.setText("CONVERSOR DE TEMPERATURA ALURA");
+        content.add(tittle);
+        tittle.setBounds(90, 50, 400, 21);
 
-        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel2.setText("jLabel2");
-        content.add(jLabel2);
-        jLabel2.setBounds(220, 120, 140, 100);
+        img.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        img.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        content.add(img);
+        img.setBounds(220, 120, 140, 100);
 
-        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel3.setText("Ingrese al temperatura a convertir:");
-        content.add(jLabel3);
-        jLabel3.setBounds(190, 260, 205, 16);
+        text.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        text.setText("Ingrese al temperatura a convertir:");
+        content.add(text);
+        text.setBounds(190, 250, 205, 16);
 
         boxMedidas1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "C", "K", "F" }));
         content.add(boxMedidas1);
@@ -107,8 +114,11 @@ public class ConversorTemperatura extends javax.swing.JPanel {
         content.add(textField2);
         textField2.setBounds(360, 290, 46, 22);
 
-        changedButton.setText("jButton1");
+        changedButton.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        changedButton.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        changedButton.setInheritsPopupMenu(true);
         changedButton.setPreferredSize(new java.awt.Dimension(80, 23));
+        changedButton.setRequestFocusEnabled(false);
         changedButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 changedButtonMouseClicked(evt);
@@ -120,7 +130,7 @@ public class ConversorTemperatura extends javax.swing.JPanel {
             }
         });
         content.add(changedButton);
-        changedButton.setBounds(240, 290, 100, 23);
+        changedButton.setBounds(260, 280, 60, 50);
 
         convertirButton.setText("Convertir");
         convertirButton.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -134,7 +144,7 @@ public class ConversorTemperatura extends javax.swing.JPanel {
             }
         });
         content.add(convertirButton);
-        convertirButton.setBounds(221, 330, 140, 23);
+        convertirButton.setBounds(220, 380, 140, 23);
 
         conversores.setText("Conversores");
         conversores.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -271,6 +281,18 @@ public class ConversorTemperatura extends javax.swing.JPanel {
               }
 };
 
+    private void setLabelImage (JLabel label1, String root){
+    Icon icon = new ImageIcon(new ImageIcon(getClass().getResource(root)).getImage().getScaledInstance(label1.getWidth(), label1.getHeight(), Image.SCALE_SMOOTH));
+    label1.setIcon(icon);
+    this.repaint();
+    }
+    
+    private void setButtonImage (JButton buttonImage, String root){
+    Icon icon = new ImageIcon(new ImageIcon(getClass().getResource(root)).getImage().getScaledInstance(buttonImage.getWidth(), buttonImage.getHeight(), Image.SCALE_SMOOTH));
+    buttonImage.setIcon(icon);
+    this.repaint();
+    }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> boxMedidas1;
     private javax.swing.JComboBox<String> boxMedidas2;
@@ -278,10 +300,10 @@ public class ConversorTemperatura extends javax.swing.JPanel {
     private javax.swing.JPanel content;
     private javax.swing.JButton conversores;
     private javax.swing.JButton convertirButton;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel img;
+    private javax.swing.JLabel text;
     private javax.swing.JTextField textField1;
     private javax.swing.JTextField textField2;
+    private javax.swing.JLabel tittle;
     // End of variables declaration//GEN-END:variables
 }

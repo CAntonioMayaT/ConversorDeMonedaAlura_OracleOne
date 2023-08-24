@@ -20,7 +20,9 @@ public class Dashboard extends javax.swing.JFrame {
      * Creates new form Dashboard
      */
     public Dashboard() {
+
         initComponents();
+        this.setLocationRelativeTo(null);
         BotonesIniciales inicio = new BotonesIniciales();
         realizarLlamadoPag init = new realizarLlamadoPag();
         init.Llamado(inicio, content);
@@ -92,7 +94,7 @@ public class Dashboard extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(Dashboard.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-
+        
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(() -> {
             new Dashboard().setVisible(true);

@@ -2,8 +2,13 @@ package com.conversorAlura.co.frame;
 
 import com.conversorAlura.co.libreria.UnidadesDeVolumen;
 import com.conversorAlura.co.libreria.realizarLlamadoPag;
+import java.awt.Image;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
@@ -25,6 +30,9 @@ public class ConversorVolumenes extends javax.swing.JPanel {
      */
     public ConversorVolumenes() {
         initComponents();
+        setLabelImage(img, "/com/conversorAlura/co/img/volumenes.png");
+        setButtonImage(changeButton, "/com/conversorAlura/co/img/flechas.png");
+
     }
 
     /**
@@ -62,7 +70,7 @@ public class ConversorVolumenes extends javax.swing.JPanel {
         tittle.setBounds(100, 50, 388, 20);
 
         img.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        img.setText("jLabel2");
+        img.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         content.add(img);
         img.setBounds(240, 80, 120, 90);
 
@@ -105,7 +113,8 @@ public class ConversorVolumenes extends javax.swing.JPanel {
         content.add(boxMedidas2);
         boxMedidas2.setBounds(410, 240, 72, 22);
 
-        changeButton.setText("jButton1");
+        changeButton.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        changeButton.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         changeButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 changeButtonMouseClicked(evt);
@@ -117,7 +126,7 @@ public class ConversorVolumenes extends javax.swing.JPanel {
             }
         });
         content.add(changeButton);
-        changeButton.setBounds(250, 240, 90, 23);
+        changeButton.setBounds(260, 230, 70, 50);
 
         convertirButton.setText("Convertir");
         convertirButton.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -126,7 +135,7 @@ public class ConversorVolumenes extends javax.swing.JPanel {
             }
         });
         content.add(convertirButton);
-        convertirButton.setBounds(240, 290, 110, 23);
+        convertirButton.setBounds(240, 300, 110, 23);
 
         conversores.setText("Conversores");
         conversores.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -257,6 +266,18 @@ private void operando (JTextField valorBox) {
                JOptionPane.showMessageDialog(content, "Ingresa un valor numérico válido.", "Error", JOptionPane.ERROR_MESSAGE);
               }
 };
+
+private void setLabelImage (JLabel label1, String root){
+    Icon icon = new ImageIcon(new ImageIcon(getClass().getResource(root)).getImage().getScaledInstance(label1.getWidth(), label1.getHeight(), Image.SCALE_SMOOTH));
+    label1.setIcon(icon);
+    this.repaint();
+    }
+
+private void setButtonImage (JButton buttonImage, String root){
+    Icon icon = new ImageIcon(new ImageIcon(getClass().getResource(root)).getImage().getScaledInstance(buttonImage.getWidth(), buttonImage.getHeight(), Image.SCALE_SMOOTH));
+    buttonImage.setIcon(icon);
+    this.repaint();
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> boxMedidas1;

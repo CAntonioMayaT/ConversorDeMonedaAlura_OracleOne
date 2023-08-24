@@ -2,8 +2,14 @@ package com.conversorAlura.co.frame;
 
 import com.conversorAlura.co.libreria.Conversion;
 import com.conversorAlura.co.libreria.realizarLlamadoPag;
+import java.awt.Image;
 import java.awt.event.ActionEvent;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+
 
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
@@ -20,6 +26,9 @@ public class ConversorMoneda extends javax.swing.JPanel {
     String tempSolve;
     public ConversorMoneda() {
         initComponents();
+        setLabelImage(imagen1, "/com/conversorAlura/co/img/coins.png");
+        setButtonImage(changeButton, "/com/conversorAlura/co/img/flechas.png");
+
     }
     
     /**
@@ -47,6 +56,7 @@ public class ConversorMoneda extends javax.swing.JPanel {
         jLabel5 = new javax.swing.JLabel();
         jButton4 = new javax.swing.JButton();
         jLabel6 = new javax.swing.JLabel();
+        imagen1 = new javax.swing.JLabel();
 
         jButton2.setText("jButton2");
 
@@ -60,22 +70,23 @@ public class ConversorMoneda extends javax.swing.JPanel {
         tittle.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         tittle.setText("CONVERSOR DE MONEDAS ALURA");
         content.add(tittle);
-        tittle.setBounds(150, 40, 312, 22);
+        tittle.setBounds(170, 40, 312, 22);
 
         text.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         text.setText("Ingrese el valor y divisa a convertir: ");
         content.add(text);
-        text.setBounds(150, 150, 312, 16);
+        text.setBounds(160, 160, 312, 16);
 
         listaDivisa1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "COP", "EUR", "USD", "JPY", "GBP", "KRW" }));
         content.add(listaDivisa1);
-        listaDivisa1.setBounds(150, 180, 72, 22);
+        listaDivisa1.setBounds(190, 200, 72, 22);
 
         listaDivisa2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "COP", "EUR", "USD", "JPY", "GBP", "KRW" }));
         content.add(listaDivisa2);
-        listaDivisa2.setBounds(390, 180, 72, 22);
+        listaDivisa2.setBounds(360, 200, 72, 22);
 
-        changeButton.setText("jButton1");
+        changeButton.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        changeButton.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         changeButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 changeButtonMouseClicked(evt);
@@ -87,7 +98,7 @@ public class ConversorMoneda extends javax.swing.JPanel {
             }
         });
         content.add(changeButton);
-        changeButton.setBounds(260, 180, 99, 23);
+        changeButton.setBounds(280, 190, 60, 50);
 
         jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
         jPanel1.setToolTipText("");
@@ -116,7 +127,7 @@ public class ConversorMoneda extends javax.swing.JPanel {
             }
         });
         content.add(valor);
-        valor.setBounds(200, 220, 210, 22);
+        valor.setBounds(200, 250, 210, 22);
 
         jPanel3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jPanel3.setToolTipText("");
@@ -150,7 +161,7 @@ public class ConversorMoneda extends javax.swing.JPanel {
             }
         });
         content.add(jButton3);
-        jButton3.setBounds(260, 270, 97, 23);
+        jButton3.setBounds(260, 280, 97, 23);
 
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel5.setText("Total cambio:  ");
@@ -176,6 +187,10 @@ public class ConversorMoneda extends javax.swing.JPanel {
         jLabel6.setText("Tasa de cambio:  ");
         content.add(jLabel6);
         jLabel6.setBounds(160, 340, 312, 16);
+
+        imagen1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        content.add(imagen1);
+        imagen1.setBounds(270, 70, 90, 80);
 
         add(content);
         content.setBounds(0, 0, 600, 500);
@@ -263,10 +278,23 @@ public class ConversorMoneda extends javax.swing.JPanel {
               
     }//GEN-LAST:event_changeButtonMouseClicked
 
+    private void setLabelImage (JLabel label1, String root){
+    Icon icon = new ImageIcon(new ImageIcon(getClass().getResource(root)).getImage().getScaledInstance(label1.getWidth(), label1.getHeight(), Image.SCALE_SMOOTH));
+    label1.setIcon(icon);
+    this.repaint();
+    }
+    
+    private void setButtonImage (JButton buttonImage, String root){
+    Icon icon = new ImageIcon(new ImageIcon(getClass().getResource(root)).getImage().getScaledInstance(buttonImage.getWidth(), buttonImage.getHeight(), Image.SCALE_SMOOTH));
+    buttonImage.setIcon(icon);
+    this.repaint();
+    }
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton changeButton;
     private javax.swing.JPanel content;
+    private javax.swing.JLabel imagen1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;

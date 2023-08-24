@@ -3,8 +3,13 @@ package com.conversorAlura.co.frame;
 
 import com.conversorAlura.co.libreria.realizarLlamadoPag;
 import com.conversorAlura.co.libreria.UnidadesDeMedida;
+import java.awt.Image;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
@@ -26,6 +31,9 @@ public class ConversorMedidas extends javax.swing.JPanel {
      */
     public ConversorMedidas() {
         initComponents();
+        setLabelImage(img, "/com/conversorAlura/co/img/medidas.png");
+        setButtonImage(changeButton, "/com/conversorAlura/co/img/flechas.png");
+
     }
 
     /**
@@ -56,17 +64,17 @@ public class ConversorMedidas extends javax.swing.JPanel {
         tittle.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         tittle.setText("CONVERSOR DE MEDIDAS ALURA");
         content.add(tittle);
-        tittle.setBounds(140, 32, 303, 30);
+        tittle.setBounds(160, 30, 303, 30);
 
         img.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        img.setText("jLabel2");
+        img.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         content.add(img);
-        img.setBounds(210, 77, 160, 120);
+        img.setBounds(230, 80, 140, 110);
 
         text.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         text.setText("Ingrese las medidas a convertir:");
         content.add(text);
-        text.setBounds(160, 210, 280, 20);
+        text.setBounds(170, 200, 280, 20);
 
         textField1.setMaximumSize(new java.awt.Dimension(64, 22));
         textField1.addActionListener(new java.awt.event.ActionListener() {
@@ -104,7 +112,9 @@ public class ConversorMedidas extends javax.swing.JPanel {
         content.add(boxMedidas2);
         boxMedidas2.setBounds(440, 250, 81, 22);
 
-        changeButton.setText("jButton1");
+        changeButton.setText("           ");
+        changeButton.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        changeButton.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         changeButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 changeButtonMouseClicked(evt);
@@ -116,7 +126,7 @@ public class ConversorMedidas extends javax.swing.JPanel {
             }
         });
         content.add(changeButton);
-        changeButton.setBounds(230, 240, 131, 40);
+        changeButton.setBounds(270, 240, 60, 50);
 
         conversores.setText("Conversores");
         conversores.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -144,7 +154,7 @@ public class ConversorMedidas extends javax.swing.JPanel {
             }
         });
         content.add(convertirButton);
-        convertirButton.setBounds(230, 300, 131, 23);
+        convertirButton.setBounds(231, 320, 140, 23);
 
         add(content);
         content.setBounds(0, 0, 600, 500);
@@ -273,6 +283,18 @@ private void operando (JTextField valorBox) {
               }
 };
 
+    private void setLabelImage (JLabel label1, String root){
+    Icon icon = new ImageIcon(new ImageIcon(getClass().getResource(root)).getImage().getScaledInstance(label1.getWidth(), label1.getHeight(), Image.SCALE_SMOOTH));
+    label1.setIcon(icon);
+    this.repaint();
+    }
+
+    private void setButtonImage (JButton buttonImage, String root){
+    Icon icon = new ImageIcon(new ImageIcon(getClass().getResource(root)).getImage().getScaledInstance(buttonImage.getWidth(), buttonImage.getHeight(), Image.SCALE_SMOOTH));
+    buttonImage.setIcon(icon);
+    this.repaint();
+    }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> boxMedidas1;
     private javax.swing.JComboBox<String> boxMedidas2;
